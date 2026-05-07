@@ -2,6 +2,10 @@
 @use './styles/_variables.scss';
 
 // Глобальные стили
+:root {
+  font-size: 16px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,9 +16,9 @@ html,
 body {
   height: 100%;
   font-family: variables.$font-normal;
-  font-size: 16px;
+  font-size: variables.$font-size-base;
   line-height: 1.5;
-  color: #333;
+  color: variables.$color-gray-800;
 }
 
 h1,

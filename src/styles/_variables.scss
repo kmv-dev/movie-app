@@ -1,3 +1,55 @@
 $font-bold: 'TT Norms Std Trial Bold', sans-serif;
 $font-regular: 'TT Norms Std Trial Regular', sans-serif;
 $font-normal: 'TT Norms Std Trial Normal', sans-serif;
+
+
+$bg-white: #ffffff;
+$bg-gradient: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+$border-primary: 1px solid rgba(0, 0, 0, 0.05);
+$shadow-primary: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+/* Основные цвета */
+$color-primary: #3b82f6;
+$color-primary-dark: #2563eb;
+$color-primary-light: #60a5fa;
+$color-secondary: #64748b;
+$color-accent: #8b5cf6;
+
+/* Статусы */
+$color-success: #10b981;
+$color-warning: #f59e0b;
+$color-error: #ef4444;
+$color-info: #06b6d4;
+
+/* Нейтральные */
+$color-white: #ffffff;
+$color-gray-50: #f9fafb;
+$color-gray-100: #f3f4f6;
+$color-gray-200: #e5e7eb;
+$color-gray-300: #d1d5db;
+$color-gray-400: #9ca3af;
+$color-gray-500: #6b7280;
+$color-gray-600: #4b5563;
+$color-gray-700: #374151;
+$color-gray-800: #1f2937;
+$color-gray-900: #111827;
+$color-black: #000000;
+
+$font-size-xs: 0.75rem;
+/* 12px */
+$font-size-sm: 0.875rem;
+/* 14px */
+$font-size-base: 1rem;
+/* 16px */
+$font-size-md: 1.125rem;
+/* 18px */
+$font-size-lg: 1.25rem;
+/* 20px */
+$font-size-xl: 1.5rem;
+/* 24px */
+$font-size-2xl: 1.875rem;
+/* 30px */
+$font-size-3xl: 2.25rem;
+/* 36px */
+$font-size-4xl: 3rem;
+/* 48px */
