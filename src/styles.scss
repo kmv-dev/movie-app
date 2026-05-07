@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+@use './styles/fonts.scss';
+@use './styles/_variables.scss';
+
+// Глобальные стили
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: variables.$font-primary;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+h1,
+h2,
+h3,
+.bold-text {
+  font-family: variables.$font-bold, sans-serif;
+  font-weight: 700;
+}
+
+.medium-text {
+  font-family: variables.$font-normal, sans-serif;
+  font-weight: 500;
+}
+
+.normal-text {
+  font-family: variables.$font-normal, sans-serif;
+  font-weight: 400;
+}
+
+button,
+.btn {
+  font-family: variables.$font-regular, sans-serif;
+  font-weight: 500;
+}
+
+input,
+textarea,
+select {
+  font-family: variables.$font-normal, sans-serif;
+  font-weight: 400;
+}
