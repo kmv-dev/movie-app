@@ -1,1 +1,54 @@
-<p>movie-card works!</p>
+<div class="movie-card" [class.movie-card--favorite]="movie().favorite" (click)="onCardClick()">
+  <div class="movie-card__poster">
+    @if (posterUrl) {
+    <img class="movie-card__image" [src]="posterUrl" [alt]="movie().title" />
+    } @else {
+    <div class="movie-card__no-poster">
+      <span class="movie-card__no-poster-icon">🎬</span>
+      <span class="movie-card__no-poster-text">Нет постера</span>
+    </div>
+    }
+
+    <button class="movie-card__favorite-btn" [class.movie-card__favorite-btn--active]="movie().favorite"
+      (click)="onFavoriteClick($event)" type="button">
+      <span class="movie-card__favorite-icon">{{ movie().favorite ? '❤️' : '🤍' }}</span>
+    </button>
+  </div>
+
+  <div class="movie-card__info">
+    <h3 class="movie-card__title">{{ movie().title | truncate:26 }}</h3>
+
+    <div class="movie-card__meta">
+      <span class="movie-card__year">{{ movie().year || 'Н/Д' }}</span>
+      <div class="movie-card__genres">
+        <span class="movie-card__genre">{{ movie().genre }}</span>
+      </div>
+    </div>
+
+    <div class="movie-card__director">
+      <strong class="movie-card__director-label">Режиссёр:</strong>
+      <span class="movie-card__director-value">{{ movie().director }}</span>
+    </div>
+
+    <div class="movie-card__actors">
+      <strong class="movie-card__actors-label">Актёры:</strong>
+      <span class="movie-card__actors-value">{{ movie().actors | truncate:40 }}</span>
+    </div>
+
+    @if (movie().description) {
+    <p class="movie-card__description">{{ movie().description | truncate:40 }}</p>
+    }
+
+    <!-- Кнопки действий -->
+    <div class="movie-card__actions">
+      <button class="movie-card__edit-btn" (click)="onEditClick($event)">
+        <span class="movie-card__edit-icon">✏️</span>
+        <span class="movie-card__edit-text">Редактировать</span>
+      </button>
+      <button class="movie-card__delete-btn" (click)="onDeleteClick($event)">
+        <span class="movie-card__delete-icon">🗑️</span>
+        <span class="movie-card__delete-text">Удалить</span>
+      </button>
+    </div>
+  </div>
+</div>

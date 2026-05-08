@@ -1,1 +1,111 @@
-<p>movie-details works!</p>
+<div class="movie-details">
+
+  <!-- Кнопки заголовка -->
+  <div class="movie-details__header">
+    <button class="movie-details__back-btn" (click)="goBack()">
+      <span class="movie-details__back-icon">←</span>
+      <span class="movie-details__back-text">Назад к списку</span>
+    </button>
+
+    @if (!isLoading() && movie()) {
+    <button class="movie-details__favorite-btn" [class.movie-details__favorite-btn--active]="movie()?.favorite"
+      (click)="toggleFavorite()">
+      <span class="movie-details__favorite-icon">{{ movie()?.favorite ? '❤️' : '🤍' }}</span>
+      <span class="movie-details__favorite-text">{{ movie()?.favorite ? 'В избранном' : 'В избранное' }}</span>
+    </button>
+    }
+  </div>
+
+  <!-- Состояние загрузки -->
+  @if (isLoading()) {
+  <div class="movie-details__loading">
+    <div class="movie-details__spinner"></div>
+    <p class="movie-details__loading-text">Загрузка фильма...</p>
+  </div>
+  }
+
+  <!-- Детали фильма -->
+  @if (!isLoading() && movie()) {
+  <div class="movie-details__content">
+
+    <!-- Секция постера -->
+    <div class="movie-details__poster-section">
+      @if (posterUrl()) {
+      <div class="movie-details__poster-wrapper">
+        <img class="movie-details__poster-image" [src]="posterUrl()" [alt]="movie()?.title" />
+      </div>
+      } @else {
+      <div class="movie-details__poster-placeholder">
+        <span class="movie-details__poster-icon">🎬</span>
+        <span class="movie-details__poster-text">Нет постера</span>
+      </div>
+      }
+    </div>
+
+    <!-- Секция информации -->
+    <div class="movie-details__info-section">
+
+      <!-- Заголовок фильма -->
+      <div class="movie-details__info-header">
+        <h1 class="movie-details__title">{{ movie()?.title }}</h1>
+        <div class="movie-details__year">
+          <span class="movie-details__year-badge">{{ getYearBadge(movie()?.year) }}</span>
+        </div>
+      </div>
+
+      <!-- Мета-информация -->
+      <div class="movie-details__meta">
+
+        <div class="movie-details__meta-item">
+          <span class="movie-details__meta-icon">🎭</span>
+          <span class="movie-details__meta-label">Жанр:</span>
+          <span class="movie-details__meta-value">{{ movie()?.genre }}</span>
+        </div>
+
+        <div class="movie-details__meta-item">
+          <span class="movie-details__meta-icon">🎬</span>
+          <span class="movie-details__meta-label">Режиссёр:</span>
+          <span class="movie-details__meta-value">{{ movie()?.director }}</span>
+        </div>
+
+        <div class="movie-details__meta-item">
+          <span class="movie-details__meta-icon">⭐</span>
+          <span class="movie-details__meta-label">Актёры:</span>
+          <span class="movie-details__meta-value">{{ movie()?.actors }}</span>
+        </div>
+
+      </div>
+
+      <!-- Описание фильма -->
+      <div class="movie-details__description">
+        <h3 class="movie-details__section-title">📖 Описание</h3>
+        <p class="movie-details__description-text">{{ movie()?.description || 'Описание отсутствует' }}</p>
+      </div>
+
+      <!-- Даты -->
+      <div class="movie-details__dates">
+        <div class="movie-details__date-item">
+          <span class="movie-details__date-icon">📅</span>
+          <span class="movie-details__date-text">Добавлен: {{ movie()?.createdAt | date:'dd.MM.yyyy HH:mm' }}</span>
+        </div>
+        <div class="movie-details__date-item">
+          <span class="movie-details__date-icon">🔄</span>
+          <span class="movie-details__date-text">Обновлён: {{ movie()?.updatedAt | date:'dd.MM.yyyy HH:mm' }}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  }
+
+  <!-- Состояние ошибки -->
+  @if (!isLoading() && !movie()) {
+  <div class="movie-details__error">
+    <div class="movie-details__error-icon">😕</div>
+    <h2 class="movie-details__error-title">Фильм не найден</h2>
+    <p class="movie-details__error-text">К сожалению, запрашиваемый фильм не существует</p>
+    <button class="movie-details__error-btn" (click)="goBack()">Вернуться к списку</button>
+  </div>
+  }
+
+</div>

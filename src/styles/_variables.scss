@@ -2,30 +2,42 @@ $font-bold: 'TT Norms Std Trial Bold', sans-serif;
 $font-regular: 'TT Norms Std Trial Regular', sans-serif;
 $font-normal: 'TT Norms Std Trial Normal', sans-serif;
 
-
 $bg-white: #ffffff;
 $bg-gradient: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+$bg-noposter-gradient: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+$bg-detail-box: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
 $border-primary: 1px solid rgba(0, 0, 0, 0.05);
 $shadow-primary: 0 4px 20px rgba(0, 0, 0, 0.08);
+$card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+$card-hover-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+
+$btn-gray: #fee2e2;
+$btn-gray-hover: #fecaca;
+$btn-bg: rgba(255, 255, 255, 0.1);
+$btn-border: rgba(255, 255, 255, 0.2);
+$btn-hover: rgba(255, 255, 255, 0.2);
+$btn-fovorite-active-bg: rgba(239, 68, 68, 0.8);
+$btn-favorite-active-border: rgba(239, 68, 68, 0.9);
+$btn-favorite-active-hover: rgba(239, 68, 68, 0.9);
 
 /* Основные цвета */
 $color-primary: #3b82f6;
 $color-primary-dark: #2563eb;
 $color-primary-light: #60a5fa;
 $color-secondary: #64748b;
-$color-accent: #8b5cf6;
+$color-accent: #f59e0b;
 
 /* Статусы */
 $color-success: #10b981;
 $color-warning: #f59e0b;
-$color-error: #ef4444;
+$color-error: #dc2626;
 $color-info: #06b6d4;
 
 /* Нейтральные */
 $color-white: #ffffff;
-$color-gray-50: #f9fafb;
+$color-gray-50: #f3f4f6;
 $color-gray-100: #f3f4f6;
-$color-gray-200: #e5e7eb;
+$color-gray-200: #f9fafb;
 $color-gray-300: #d1d5db;
 $color-gray-400: #9ca3af;
 $color-gray-500: #6b7280;

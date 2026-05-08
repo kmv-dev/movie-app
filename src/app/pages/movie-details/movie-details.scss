@@ -1,0 +1,413 @@
+@use '../../../styles/variables' as vars;
+
+.movie-details {
+  max-width: 1360px;
+  margin: 0 auto;
+  background: vars.$bg-detail-box;
+  padding: 40px;
+  border-radius: 20px;
+  font-family: vars.$font-regular;
+
+  // Заголовок с кнопками
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: 768px) {
+      margin-bottom: 32px;
+    }
+  }
+
+  // Кнопка назад
+  &__back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: vars.$btn-bg;
+    backdrop-filter: blur(10px);
+    border: 1px solid vars.$btn-border;
+    border-radius: 12px;
+    color: vars.$color-white;
+    font-size: vars.$font-size-base;
+    font-weight: 500;
+    font-family: vars.$font-regular;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: vars.$btn-hover;
+      transform: translateX(-4px);
+    }
+  }
+
+  &__back-icon {
+    font-size: vars.$font-size-lg;
+  }
+
+  &__back-text {
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
+
+  // Кнопка избранного
+  &__favorite-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: vars.$btn-bg;
+    backdrop-filter: blur(10px);
+    border: 1px solid vars.$btn-border;
+    border-radius: 12px;
+    color: vars.$color-white;
+    font-size: vars.$font-size-base;
+    font-weight: 500;
+    font-family: vars.$font-regular;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: vars.$btn-hover;
+      transform: translateY(-2px);
+    }
+
+    &--active {
+      background: vars.$btn-fovorite-active-bg;
+      border-color: vars.$btn-favorite-active-border;
+
+      &:hover {
+        background: vars.$btn-favorite-active-hover;
+      }
+    }
+  }
+
+  &__favorite-icon {
+    font-size: vars.$font-size-md;
+  }
+
+  // Состояние загрузки
+  &__loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 20px;
+  }
+
+  &__spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid vars.$color-gray-800;
+    border-top-color: vars.$color-accent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  &__loading-text {
+    color: vars.$color-gray-200;
+    font-size: vars.$font-size-md;
+    font-family: vars.$font-regular;
+  }
+
+  // Основной контент
+  &__content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  // Секция постера
+  &__poster-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+  }
+
+  &__poster-wrapper {
+    width: 100%;
+    max-width: 400px;
+    min-width: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: vars.$card-shadow;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.2);
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      padding-top: 150%;
+    }
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: vars.$card-hover-shadow;
+    }
+  }
+
+  &__poster-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+
+    &.fill {
+      object-fit: cover;
+    }
+  }
+
+  &__poster-placeholder {
+    width: 100%;
+    max-width: 400px;
+    min-width: 200px;
+    aspect-ratio: 2 / 3;
+    background: vars.$bg-noposter-gradient;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: vars.$color-gray-500;
+    text-align: center;
+    box-shadow: vars.$card-shadow;
+  }
+
+  &__poster-icon {
+    font-size: 64px;
+  }
+
+  &__poster-text {
+    font-size: vars.$font-size-sm;
+    font-family: vars.$font-regular;
+  }
+
+  // Адаптивные размеры контейнера
+  @media (max-width: 1200px) {
+
+    &__poster-wrapper,
+    &__poster-placeholder {
+      max-width: 320px;
+    }
+  }
+
+  @media (max-width: 992px) {
+
+    &__poster-wrapper,
+    &__poster-placeholder {
+      max-width: 280px;
+    }
+  }
+
+  @media (max-width: 768px) {
+
+    &__poster-wrapper,
+    &__poster-placeholder {
+      max-width: 260px;
+    }
+  }
+
+  @media (max-width: 576px) {
+
+    &__poster-wrapper,
+    &__poster-placeholder {
+      max-width: 220px;
+    }
+  }
+
+  @media (max-width: 480px) {
+
+    &__poster-wrapper,
+    &__poster-placeholder {
+      max-width: 200px;
+    }
+
+    &__poster-icon {
+      font-size: vars.$font-size-4xl;
+    }
+
+    &__poster-text {
+      font-size: vars.$font-size-xs;
+    }
+  }
+
+  // Секция информации
+  &__info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__title {
+    font-size: vars.$font-size-4xl;
+    font-weight: 700;
+    font-family: vars.$font-bold;
+    color: vars.$color-white;
+    margin: 0;
+    line-height: 1.2;
+
+    @media (max-width: 768px) {
+      font-size: vars.$font-size-3xl;
+    }
+
+    @media (max-width: 480px) {
+      font-size: vars.$font-size-2xl;
+    }
+  }
+
+  &__year-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: vars.$font-size-base;
+    font-weight: 600;
+    font-family: vars.$font-bold;
+    color: vars.$color-accent;
+
+    @media (max-width: 480px) {
+      font-size: vars.$font-size-sm;
+    }
+  }
+
+  // Мета-информация
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 0;
+    border-top: vars.$border-primary;
+    border-bottom: vars.$border-primary;
+  }
+
+  &__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: vars.$font-size-base;
+    font-family: vars.$font-regular;
+    color: rgba(255, 255, 255, 0.9);
+
+    @media (max-width: 480px) {
+      font-size: vars.$font-size-sm;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__meta-icon {
+    font-size: vars.$font-size-md;
+  }
+
+  &__meta-label {
+    font-weight: 600;
+    font-family: vars.$font-bold;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  &__meta-value {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  // Описание
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__section-title {
+    font-size: vars.$font-size-xl;
+    font-weight: 600;
+    font-family: vars.$font-bold;
+    color: vars.$color-white;
+    margin: 0;
+
+    @media (max-width: 480px) {
+      font-size: vars.$font-size-lg;
+    }
+  }
+
+  &__description-text {
+    font-size: vars.$font-size-base;
+    line-height: 1.6;
+    font-family: vars.$font-regular;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+
+    @media (max-width: 480px) {
+      font-size: vars.$font-size-sm;
+    }
+  }
+
+  // Даты
+  &__dates {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 20px;
+    font-size: vars.$font-size-sm;
+    font-family: vars.$font-regular;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  &__date-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__date-icon {
+    font-size: vars.$font-size-sm;
+  }
+
+
+}
+
+// Анимация спиннера
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Адаптивность для маленьких экранов
+@media (max-width: 480px) {
+  .movie-details {
+    padding: 16px;
+  }
+}

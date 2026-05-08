@@ -1,0 +1,36 @@
+@use '../../../styles/variables' as vars;
+
+.movie-list {
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+
+    app-movie-card {
+      width: 100%;
+      max-width: 320px;
+
+      @media (min-width: 640px) {
+        width: calc(50% - 12px);
+      }
+
+      @media (min-width: 1024px) {
+        width: calc(33.333% - 16px);
+      }
+
+      @media (min-width: 1280px) {
+        width: calc(25% - 18px);
+      }
+
+      @media (min-width: 1920px) {
+        width: calc(20% - 19.2px);
+      }
+
+      @media (max-width: 720px) {
+        max-width: 100%;
+      }
+    }
+  }
+}
