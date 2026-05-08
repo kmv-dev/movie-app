@@ -40,7 +40,6 @@ export class MovieCard {
     const savedPoster = this.movieService.getPosterUrl(movieId);
     if (savedPoster) {
       this.posterUrl = savedPoster;
-      console.log('Using user uploaded poster:', this.posterUrl);
       return;
     }
 
@@ -48,13 +47,11 @@ export class MovieCard {
     const moviePoster = this.movie().posterUrl;
     if (moviePoster) {
       this.posterUrl = moviePoster;
-      console.log('Using movie data poster:', this.posterUrl);
       return;
     }
 
     // 3. Если ничего нет, показываем заглушку
     this.posterUrl = null;
-    console.log('No poster found for:', this.movie().title);
   }
 
   onCardClick(): void {
