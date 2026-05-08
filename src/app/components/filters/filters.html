@@ -1,1 +1,141 @@
-<p>filters works!</p>
+<div class="filters" role="region" aria-label="Фильтры и поиск">
+  <!-- Поиск и кнопка добавления -->
+  <div class="filters__top">
+    <div class="filters__search">
+      <span class="filters__search-icon">🔍</span>
+      <input type="text" [value]="searchTerm()" placeholder="Поиск по названию, режиссёру, актёрам... (от 3 символов)"
+        (input)="onSearch($event)" class="filters__search-input" aria-label="Поиск" />
+      @if (searchTerm() && searchTerm().length > 0) {
+      <button class="filters__search-clear" (click)="clearSearch()" aria-label="Очистить поиск">
+        ✕
+      </button>
+      }
+    </div>
+    <button class="filters__add-btn" (click)="onAddMovieClick($event)">
+      <span class="filters__add-btn-icon">+</span>
+      <span class="filters__add-btn-text">Добавить фильм</span>
+    </button>
+  </div>
+
+  <div class="filters__row">
+    <!-- Фильтр по жанру -->
+    <div class="filters__group">
+      <label class="filters__label">
+        <span class="filters__label-icon">🎭</span>
+        <span class="filters__label-text">Жанр</span>
+      </label>
+      <div class="filters__select">
+        <select [value]="selectedGenre()" (change)="onGenreChange($event)" class="filters__select-input">
+          <option value="all">Все жанры</option>
+          @for (genre of genres(); track genre) {
+          <option [value]="genre">{{ genre }}</option>
+          }
+        </select>
+        <span class="filters__select-arrow">▼</span>
+      </div>
+    </div>
+
+    <!-- Фильтр по году -->
+    <div class="filters__group">
+      <label class="filters__label">
+        <span class="filters__label-icon">📅</span>
+        <span class="filters__label-text">Год</span>
+      </label>
+      <div class="filters__select">
+        <select [value]="selectedYear() ?? 'all'" (change)="onYearChange($event)" class="filters__select-input">
+          <option value="all">Все годы</option>
+          @for (year of years(); track year) {
+          <option [value]="year">{{ year }}</option>
+          }
+        </select>
+        <span class="filters__select-arrow">▼</span>
+      </div>
+    </div>
+
+    <!-- Сортировка -->
+    <div class="filters__sort">
+      <div class="filters__group">
+        <label class="filters__label">
+          <span class="filters__label-icon">🔄</span>
+          <span class="filters__label-text">Сортировать</span>
+        </label>
+        <div class="filters__select">
+          <select [value]="selectedSortBy()" (change)="selectedSortBy.set($any($event.target).value); onSortingChange()"
+            class="filters__select-input">
+            <option value="title">По названию</option>
+            <option value="year">По году</option>
+            <option value="createdAt">По дате добавления</option>
+            <option value="updatedAt">По дате обновления</option>
+          </select>
+          <span class="filters__select-arrow">▼</span>
+        </div>
+      </div>
+
+      <div class="filters__group">
+        <div class="filters__select filters__select--small">
+          <select [value]="selectedSortOrder()"
+            (change)="selectedSortOrder.set($any($event.target).value); onSortingChange()"
+            class="filters__select-input">
+            <option value="asc">▲ По возрастанию</option>
+            <option value="desc">▼ По убыванию</option>
+          </select>
+          <span class="filters__select-arrow">▼</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Кнопка сброса -->
+    <button (click)="clearFilters()" [disabled]="isLoading() || activeFiltersCount() === 0" class="filters__reset-btn">
+      @if (isLoading()) {
+      <span class="filters__reset-spinner">⏳</span>
+      <span>Очистка...</span>
+      } @else {
+      <span class="filters__reset-icon">🗑️</span>
+      <span>Сбросить фильтры</span>
+      @if (activeFiltersCount() > 0) {
+      <span class="filters__reset-badge">{{ activeFiltersCount() }}</span>
+      }
+      }
+    </button>
+  </div>
+
+  <!-- Кнопка "Избранное" -->
+  <button (click)="toggleFavoritesFilter()" class="filters__favorites-btn"
+    [class.filters__favorites-btn--active]="showOnlyFavorites()">
+    <span class="filters__favorites-icon">{{ showOnlyFavorites() ? '❤️' : '🤍' }}</span>
+    <span class="filters__favorites-text">Избранное</span>
+    @if (showOnlyFavorites()) {
+    <span class="filters__favorites-badge">активно</span>
+    }
+  </button>
+
+  <!-- Активные фильтры -->
+  @if (activeFiltersCount() > 0) {
+  <div class="filters__active">
+    <span class="filters__active-title">Активные фильтры:</span>
+    <div class="filters__active-list">
+      @if (selectedGenre() !== 'all') {
+      <div class="filters__chip">
+        <span class="filters__chip-icon">🎭</span>
+        <span class="filters__chip-text">{{ getGenreLabel() }}</span>
+        <button class="filters__chip-remove" (click)="resetGenre()">✕</button>
+      </div>
+      }
+      @if (selectedYear() !== null) {
+      <div class="filters__chip">
+        <span class="filters__chip-icon">📅</span>
+        <span class="filters__chip-text">{{ selectedYear() }}</span>
+        <button class="filters__chip-remove" (click)="resetYear()">✕</button>
+      </div>
+      }
+      @if (showOnlyFavorites()) {
+      <div class="filters__chip filters__chip--favorite">
+        <span class="filters__chip-icon">❤️</span>
+        <span class="filters__chip-text">Только избранное</span>
+        <button class="filters__chip-remove" (click)="toggleFavoritesFilter()">✕</button>
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>

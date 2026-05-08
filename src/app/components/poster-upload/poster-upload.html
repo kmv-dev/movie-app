@@ -1,0 +1,33 @@
+<div class="poster-upload">
+  <div class="poster-upload__wrapper" [class.poster-upload__wrapper--has-poster]="displayPoster()">
+    @if (displayPoster()) {
+    <img [src]="displayPoster()" [alt]="movieTitle()" class="poster-upload__image" />
+    <button type="button" class="poster-upload__remove-btn" (click)="removePoster()" title="Удалить постер">
+      ✕
+    </button>
+    } @else {
+    <div class="poster-upload__placeholder" (click)="triggerFileInput(fileInput)">
+      <div class="poster-upload__placeholder-content">
+        <span class="poster-upload__upload-icon">🖼️</span>
+        <p class="poster-upload__placeholder-text">Нажмите для загрузки нового <br>постера</p>
+        <small class="poster-upload__placeholder-hint">JPG, PNG, WebP (до 2MB)</small>
+      </div>
+    </div>
+    }
+
+    <input #fileInput type="file" accept="image/jpeg,image/png,image/webp,image/jpg" (change)="onFileSelected($event)"
+      class="poster-upload__input" />
+
+    @if (displayPoster()) {
+    <button type="button" class="poster-upload__change-btn" (click)="triggerFileInput(fileInput)">
+      📷 Изменить постер
+    </button>
+    }
+
+    @if (isLoading()) {
+    <div class="poster-upload__loading">
+      <div class="poster-upload__spinner"></div>
+    </div>
+    }
+  </div>
+</div>

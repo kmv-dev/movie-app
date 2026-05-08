@@ -1,0 +1,263 @@
+@use '../../../styles/variables' as vars;
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: vars.$bg-modal;
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+
+  &__container {
+    background: vars.$bg-white;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 680px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: vars.$shadow-primary;
+    animation: slideIn 0.3s ease;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: vars.$color-gray-100;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: vars.$color-gray-300;
+      border-radius: 4px;
+
+      &:hover {
+        background: vars.$color-gray-400;
+      }
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 28px;
+    border-bottom: vars.$border-primary;
+    background: vars.$bg-gradient;
+    border-radius: 24px 24px 0 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: vars.$font-size-xl;
+    font-family: vars.$font-bold;
+    color: vars.$color-gray-800;
+  }
+
+  &__close {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: vars.$color-gray-100;
+    border: none;
+    border-radius: 50%;
+    font-size: vars.$font-size-md;
+    color: vars.$color-gray-500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: vars.$color-gray-200;
+      color: vars.$color-gray-700;
+      transform: rotate(90deg);
+    }
+  }
+
+  &__poster-section {
+    padding: 20px 28px;
+    background: vars.$color-gray-50;
+    border-bottom: vars.$border-primary;
+  }
+
+  &__form {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+    padding-top: 20px;
+    border-top: vars.$border-primary;
+  }
+
+  &__btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: vars.$font-size-sm;
+    font-family: vars.$font-bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &--cancel {
+      background: vars.$color-gray-100;
+      color: vars.$color-gray-600;
+
+      &:hover {
+        background: vars.$color-gray-200;
+        color: vars.$color-gray-800;
+        transform: translateY(-1px);
+      }
+    }
+
+    &--submit {
+      background: vars.$color-primary;
+      color: vars.$color-white;
+      box-shadow: vars.$blue-shadow;
+
+      &:hover:not(:disabled) {
+        background: vars.$color-primary-dark;
+        transform: translateY(-2px);
+        box-shadow: vars.$blue-shadow-hover;
+      }
+
+      &:active:not(:disabled) {
+        transform: translateY(0);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// Form group styles
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__label {
+    font-size: vars.$font-size-sm;
+    font-family: vars.$font-bold;
+    color: vars.$color-gray-700;
+  }
+
+  &__input,
+  &__textarea {
+    padding: 12px 16px;
+    font-size: vars.$font-size-sm;
+    font-family: vars.$font-regular;
+    border: 2px solid vars.$color-gray-300;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    background: vars.$color-white;
+
+    &:focus {
+      outline: none;
+      border-color: vars.$color-primary;
+      box-shadow: vars.$shadow-input-primary;
+    }
+
+    &::placeholder {
+      color: vars.$color-gray-400;
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  &__error {
+    font-size: vars.$font-size-xs;
+    color: vars.$color-error;
+    margin-top: 4px;
+    padding-left: 4px;
+    font-family: vars.$font-normal;
+  }
+}
+
+// Form row
+.form-row {
+  display: flex;
+  gap: 20px;
+
+  .form-group {
+    flex: 1;
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// Responsive
+@media (max-width: 640px) {
+  .modal {
+    &__header {
+      padding: 20px;
+    }
+
+    &__title {
+      font-size: vars.$font-size-lg;
+    }
+
+    &__poster-section {
+      padding: 16px 20px;
+    }
+
+    &__form {
+      padding: 20px;
+    }
+
+    &__actions {
+      flex-direction: column;
+
+      .modal__btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}

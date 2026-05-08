@@ -1,7 +1,7 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MovieService } from '../../services/movie.service';
+import { MovieService } from '../../services/movie-service'
 import { Movie } from '../../models/movie.model';
 
 @Component({

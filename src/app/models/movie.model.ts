@@ -11,3 +11,13 @@ export interface Movie {
   updatedAt: Date;
   favorite?: boolean;
 }
+
+export interface MovieFormData {
+  title: string;
+  genre: string;
+  year?: number | null;
+  director: string;
+  actors: string;
+  description?: string | null;
+  posterUrl?: string | null;
+}
