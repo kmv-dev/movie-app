@@ -1,1 +1,70 @@
-<p>movie-form works!</p>
+<div class="modal" (click)="onClose.emit()">
+  <div class="modal__container" (click)="$event.stopPropagation()">
+    <div class="modal__header">
+      <h2 class="modal__title">{{ isEditMode() ? '✏️ Редактировать фильм' : '➕ Добавить фильм' }}</h2>
+      <button class="modal__close" (click)="onClose.emit()" aria-label="Закрыть">✕</button>
+    </div>
+
+    <div class="modal__poster-section">
+      <app-poster-upload [movieId]="movieId() || 'new'" [movieTitle]="movieForm.get('title')?.value"
+        [posterPreview]="currentPoster" (posterChanged)="onPosterChanged($event)" (posterRemoved)="onPosterRemoved()" />
+    </div>
+
+    <form [formGroup]="movieForm" (ngSubmit)="onSubmit()" class="modal__form">
+
+      <div class="form-group">
+        <label class="form-group__label">Название *</label>
+        <input formControlName="title" type="text" placeholder="Введите название фильма" class="form-group__input" />
+        @if (movieForm.get('title')?.invalid && movieForm.get('title')?.touched) {
+        <div class="form-group__error">Название обязательно</div>
+        }
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-group__label">Жанр *</label>
+          <input formControlName="genre" type="text" placeholder="Например: Драма, Комедия" class="form-group__input" />
+          @if (movieForm.get('genre')?.invalid && movieForm.get('genre')?.touched) {
+          <div class="form-group__error">Жанр обязателен</div>
+          }
+        </div>
+        <div class="form-group">
+          <label class="form-group__label">Год выпуска</label>
+          <input formControlName="year" type="number" placeholder="ГГГГ" class="form-group__input" />
+          @if (movieForm.get('year')?.invalid && movieForm.get('year')?.touched) {
+          <div class="form-group__error">Год от 1888 до 2026</div>
+          }
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-group__label">Режиссёр *</label>
+        <input formControlName="director" type="text" placeholder="ФИО режиссёра" class="form-group__input" />
+        @if (movieForm.get('director')?.invalid && movieForm.get('director')?.touched) {
+        <div class="form-group__error">Режиссёр обязателен</div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label class="form-group__label">Актёры *</label>
+        <input formControlName="actors" type="text" placeholder="Через запятую" class="form-group__input" />
+        @if (movieForm.get('actors')?.invalid && movieForm.get('actors')?.touched) {
+        <div class="form-group__error">Актёры обязательны</div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label class="form-group__label">Аннотация</label>
+        <textarea formControlName="description" rows="4" placeholder="Краткое описание фильма..."
+          class="form-group__textarea"></textarea>
+      </div>
+
+      <div class="modal__actions">
+        <button type="button" class="modal__btn modal__btn--cancel" (click)="onClose.emit()">Отмена</button>
+        <button type="submit" class="modal__btn modal__btn--submit" [disabled]="movieForm.invalid">
+          {{ isEditMode() ? 'Сохранить' : 'Добавить' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

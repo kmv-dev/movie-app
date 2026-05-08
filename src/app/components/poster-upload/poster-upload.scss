@@ -1,0 +1,145 @@
+@use '../../../styles/variables' as vars;
+
+.poster-upload {
+  width: 100%;
+}
+
+.poster-upload__wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: vars.$bg-poster;
+}
+
+.poster-upload__wrapper--has-poster {
+  background: transparent;
+}
+
+.poster-upload__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: vars.$shadow-primary
+}
+
+.poster-upload__placeholder {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: vars.$bg-gradient-poster;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border-radius: 8px;
+}
+
+.poster-upload__placeholder:hover {
+  transform: scale(1.02);
+}
+
+.poster-upload__placeholder-content {
+  text-align: center;
+  color: vars.$color-white ;
+}
+
+.poster-upload__upload-icon {
+  font-size: vars.$font-size-4xl;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.poster-upload__placeholder-text {
+  margin: 0;
+  font-size: vars.$font-size-sm;
+  opacity: 0.9;
+}
+
+.poster-upload__placeholder-hint {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.poster-upload__remove-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: vars.$btn-poster-upload;
+  color: vars.$color-white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: vars.$font-size-base;
+  transition: all 0.2s;
+  z-index: 10;
+}
+
+.poster-upload__remove-btn:hover {
+  background: vars.$btn-poster-upload-hover;
+  transform: scale(1.1);
+}
+
+.poster-upload__change-btn {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: vars.$btn-poster-upload-change;
+  color: vars.$color-white;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: vars.$font-size-xs;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.poster-upload__change-btn:hover {
+  background: vars.$btn-poster-upload-change-hover;
+}
+
+.poster-upload__loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: vars.$color-gray-900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.poster-upload__spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid vars.$color-gray-100;
+  border-top: 4px solid vars.$color-primary;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.poster-upload__input {
+  display: none;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

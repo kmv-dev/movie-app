@@ -2,7 +2,7 @@ import { Component, input, output, inject, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Movie } from '../../models/movie.model';
-import { MovieService } from '../../services/movie.service';
+import { MovieService } from '../../services/movie-service';
 import { TruncatePipe } from '../../pipe/truncate.pipe';
 
 @Component({

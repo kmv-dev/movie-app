@@ -3,13 +3,20 @@ $font-regular: 'TT Norms Std Trial Regular', sans-serif;
 $font-normal: 'TT Norms Std Trial Normal', sans-serif;
 
 $bg-white: #ffffff;
+$bg-poster: #f5f5f5;
 $bg-gradient: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+$bg-gradient-poster: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 $bg-noposter-gradient: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
 $bg-detail-box: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+$btn-favourite-gradient-bg: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+$bg-modal: rgba(0, 0, 0, 0.6);
 $border-primary: 1px solid rgba(0, 0, 0, 0.05);
 $shadow-primary: 0 4px 20px rgba(0, 0, 0, 0.08);
 $card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 $card-hover-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+$shadow-input-primary: 0 0 0 3px rgba(59, 130, 246, 0.1);
+$blue-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+$blue-shadow-hover: 0 4px 12px rgba(59, 130, 246, 0.3);
 
 $btn-gray: #fee2e2;
 $btn-gray-hover: #fecaca;
@@ -19,6 +26,10 @@ $btn-hover: rgba(255, 255, 255, 0.2);
 $btn-fovorite-active-bg: rgba(239, 68, 68, 0.8);
 $btn-favorite-active-border: rgba(239, 68, 68, 0.9);
 $btn-favorite-active-hover: rgba(239, 68, 68, 0.9);
+$btn-poster-upload: rgba(220, 53, 69, 0.9);
+$btn-poster-upload-hover: rgba(220, 53, 69, 1);
+$btn-poster-upload-change: rgba(0, 123, 255, 0.9);
+$btn-poster-upload-change-hover: rgba(0, 123, 255, 1);
 
 /* Основные цвета */
 $color-primary: #3b82f6;
@@ -30,7 +41,7 @@ $color-accent: #f59e0b;
 /* Статусы */
 $color-success: #10b981;
 $color-warning: #f59e0b;
-$color-error: #dc2626;
+$color-error: rgba(239, 68, 68, 1);
 $color-info: #06b6d4;
 
 /* Нейтральные */
