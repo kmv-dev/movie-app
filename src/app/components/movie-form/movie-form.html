@@ -7,7 +7,7 @@
 
     <div class="modal__poster-section">
       <app-poster-upload [movieId]="movieId() || 'new'" [movieTitle]="movieForm.get('title')?.value"
-        [posterPreview]="currentPoster" (posterChanged)="onPosterChanged($event)" (posterRemoved)="onPosterRemoved()" />
+        [posterPreview]="currentPoster" (posterRemoved)="onPosterRemoved()" />
     </div>
 
     <form [formGroup]="movieForm" (ngSubmit)="onSubmit()" class="modal__form">
