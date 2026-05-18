@@ -83,19 +83,6 @@ export class MovieFormComponent implements OnInit {
     this.onSave.emit();
   }
 
-  onPosterChanged(base64: string): void {
-
-    this.pendingPoster = base64;
-    this.currentPoster = base64;
-
-    if (this.isEditMode() && this.movieId()) {
-      this.movieService.savePoster(this.movieId()!, base64);
-      setTimeout(() => {
-        this.movieService.refreshPosters();
-      }, 50);
-    }
-  }
-
   onPosterRemoved(): void {
 
     this.pendingPoster = null;
